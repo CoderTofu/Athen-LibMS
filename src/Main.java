@@ -1,10 +1,13 @@
-import org.json.simple.JSONObject;
+import classes.*;
 
 public class Main {
     public static void main(String[] args) {
         new MyFrame();
-
+        new Library();
     }
-//    Study this shit you garbage
-//    https://www.geeksforgeeks.org/working-with-json-data-in-java/
+
+//    IMPORTANT STUFF:
+//    1. JSON
+//          https://www.geeksforgeeks.org/working-with-json-data-in-java/
+//          https://www.tutorialspoint.com/how-to-write-create-a-json-file-using-java
 }
