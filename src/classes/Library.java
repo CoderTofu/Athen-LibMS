@@ -61,12 +61,14 @@ public class Library {
 
     public void addBook(Book book) {
         booksArr.add(book.objectify());
-        data.put("books", booksArr);
         updateData();
     }
 
+    public void addMember(Member member) {
+        memArr.add(member.objectify());
+        updateData();
+    }
 
 //    private void removeBook() {}
-//    private void addMember() {}
 //    private void removeMember() {}
 }

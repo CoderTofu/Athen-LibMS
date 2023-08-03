@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import java.util.UUID;
 
 public class Book {
+
     String title, author, bookID;
     Boolean availability;
     public Book(String title, String author, Boolean availability) {
@@ -22,7 +23,6 @@ public class Book {
         bookInfo.put("bookID", this.bookID);
         return bookInfo;
     }
-
 
     private String genID() {
         return UUID.randomUUID().toString();

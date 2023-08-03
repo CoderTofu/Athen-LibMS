@@ -5,7 +5,11 @@ public class Main {
 //        new MyFrame();
         Library myLib = new Library();
         Book book1 = new Book("The First Book", "Auz", true);
+
+        Member member = new Member("John", "Doe", "Manila", "2487609");
+
         myLib.addBook(book1);
+        myLib.addMember(member);
     }
 
 //    IMPORTANT STUFF:
