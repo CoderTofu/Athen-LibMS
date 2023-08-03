@@ -12,6 +12,8 @@ import java.io.IOException;
 
 
 public class Library {
+
+    String filePath = "data.json";
     FileReader fileReader;
     FileWriter fileWriter;
     JSONParser parser = new JSONParser();
@@ -19,7 +21,6 @@ public class Library {
     JSONArray booksArr, memArr;
      public Library() {
 //      Check if a data.json exists
-        String filePath = "data.json"; //
 
         File file = new File(filePath);
 
@@ -32,19 +33,15 @@ public class Library {
 
             data.put("books", booksArr);
             data.put("members", memArr);
-            try {
-                fileWriter = new FileWriter(filePath);
-                fileWriter.write(data.toJSONString());
-                fileWriter.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            updateData();
         } else {
             System.out.println("EXISTS");
 
             try {
                 fileReader = new FileReader(filePath);
                 data = (JSONObject) parser.parse(fileReader);
+                booksArr = (JSONArray) data.get("books");
+                memArr = (JSONArray) data.get("members");
             } catch (IOException | ParseException e) {
                 throw new RuntimeException(e);
             }
@@ -52,11 +49,24 @@ public class Library {
 
     }
 
-    private void addBook() {
-//        look for the book key
-//        add a book as an object to the array
+    private void updateData() {
+        try {
+            fileWriter = new FileWriter(filePath);
+            fileWriter.write(data.toJSONString());
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    private void removeBook() {}
-    private void addMember() {}
-    private void removeMember() {}
+
+    public void addBook(Book book) {
+        booksArr.add(book.objectify());
+        data.put("books", booksArr);
+        updateData();
+    }
+
+
+//    private void removeBook() {}
+//    private void addMember() {}
+//    private void removeMember() {}
 }

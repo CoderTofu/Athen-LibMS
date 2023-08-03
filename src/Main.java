@@ -2,8 +2,10 @@ import classes.*;
 
 public class Main {
     public static void main(String[] args) {
-        new MyFrame();
-        new Library();
+//        new MyFrame();
+        Library myLib = new Library();
+        Book book1 = new Book("The First Book", "Auz", true);
+        myLib.addBook(book1);
     }
 
 //    IMPORTANT STUFF:
