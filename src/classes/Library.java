@@ -81,5 +81,20 @@ public class Library {
          }
     }
 
-//    private void removeMember() {}
+    public void removeMember(String memID) {
+        int toDelete = -1;
+        for (int i = 0; i < memArr.size(); i++) {
+            JSONObject obj = (JSONObject) memArr.get(i);
+            String currentMemberID = (String) obj.get("memID");
+
+            if (currentMemberID.equals(memID)) {
+                toDelete = i;
+                break;
+            }
+        }
+        if (toDelete != -1) {
+            memArr.remove(toDelete);
+            updateData();
+        }
+    }
 }
