@@ -25,8 +25,6 @@ public class Library {
         File file = new File(filePath);
 
         if (!file.exists()) {
-            System.out.println("DOES NOT EXIST");
-
             data = new JSONObject();
             booksArr = new JSONArray();
             memArr = new JSONArray();
@@ -35,8 +33,6 @@ public class Library {
             data.put("members", memArr);
             updateData();
         } else {
-            System.out.println("EXISTS");
-
             try {
                 fileReader = new FileReader(filePath);
                 data = (JSONObject) parser.parse(fileReader);
@@ -58,7 +54,6 @@ public class Library {
             e.printStackTrace();
         }
     }
-
     public void addBook(Book book) {
         booksArr.add(book.objectify());
         updateData();
@@ -69,6 +64,22 @@ public class Library {
         updateData();
     }
 
-//    private void removeBook() {}
+    public void removeBook(String bookID) {
+         int toDelete = -1;
+         for (int i = 0; i < booksArr.size(); i++) {
+             JSONObject obj = (JSONObject) booksArr.get(i);
+             String currentBookID = (String) obj.get("bookID");
+
+             if (currentBookID.equals(bookID)) {
+                 toDelete = i;
+                 break;
+             }
+         }
+         if (toDelete != -1) {
+             booksArr.remove(toDelete);
+             updateData();
+         }
+    }
+
 //    private void removeMember() {}
 }
