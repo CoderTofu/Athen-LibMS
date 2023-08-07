@@ -7,11 +7,14 @@ import java.util.UUID;
 public class Book {
 
     String title, author, bookID;
+
+    JSONObject borrower;
     Boolean availability;
     public Book(String title, String author, Boolean availability) {
         this.title = title;
         this.author = author;
         this.availability = availability;
+        this.borrower = new JSONObject(); // Person who is currently borrowing the book
         this.bookID = this.genID();
     }
 
@@ -21,6 +24,7 @@ public class Book {
         bookInfo.put("author", this.author);
         bookInfo.put("availability", this.availability);
         bookInfo.put("bookID", this.bookID);
+        bookInfo.put("borrower", this.borrower);
         return bookInfo;
     }
 

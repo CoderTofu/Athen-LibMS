@@ -19,7 +19,7 @@ public class Library {
     JSONParser parser = new JSONParser();
     JSONObject data;
     JSONArray booksArr, memArr;
-     public Library() {
+    public Library() {
 //      Check if a data.json exists
 
         File file = new File(filePath);
@@ -54,6 +54,18 @@ public class Library {
             e.printStackTrace();
         }
     }
+
+    private int indexSearch(JSONArray array, String ID) {
+        for (int i = 0; i < array.size(); i++) {
+            JSONObject obj = (JSONObject) array.get(i);
+            String currentID = (String) obj.get("bookID");
+
+            if (currentID.equals(ID)) {
+                return i;
+            }
+        }
+        return -1;
+    }
     public void addBook(Book book) {
         booksArr.add(book.objectify());
         updateData();
@@ -65,16 +77,7 @@ public class Library {
     }
 
     public void removeBook(String bookID) {
-         int toDelete = -1;
-         for (int i = 0; i < booksArr.size(); i++) {
-             JSONObject obj = (JSONObject) booksArr.get(i);
-             String currentBookID = (String) obj.get("bookID");
-
-             if (currentBookID.equals(bookID)) {
-                 toDelete = i;
-                 break;
-             }
-         }
+         int toDelete = indexSearch(booksArr, bookID);
          if (toDelete != -1) {
              booksArr.remove(toDelete);
              updateData();
@@ -82,18 +85,36 @@ public class Library {
     }
 
     public void removeMember(String memID) {
-        int toDelete = -1;
-        for (int i = 0; i < memArr.size(); i++) {
-            JSONObject obj = (JSONObject) memArr.get(i);
-            String currentMemberID = (String) obj.get("memID");
-
-            if (currentMemberID.equals(memID)) {
-                toDelete = i;
-                break;
-            }
-        }
+        int toDelete = indexSearch(memArr, memID);
         if (toDelete != -1) {
             memArr.remove(toDelete);
+            updateData();
+        }
+    }
+
+    public void editBookTitle(String bookID, String newTitle) {
+        int toEdit = indexSearch(booksArr, bookID);
+        JSONObject obj = (JSONObject) booksArr.get(toEdit);
+        if (toEdit != -1) {
+            obj.put("title", newTitle);
+            updateData();
+        }
+    }
+
+    public void editBookAuthor(String bookID, String author) {
+        int toEdit = indexSearch(booksArr, bookID);
+        JSONObject obj = (JSONObject) booksArr.get(toEdit);
+        if (toEdit != -1) {
+            obj.put("author", author);
+            updateData();
+        }
+    }
+
+    public void editBookAvailability (String bookID) {
+        int toEdit = indexSearch(booksArr, bookID);
+        JSONObject obj = (JSONObject) booksArr.get(toEdit);
+        if (toEdit != -1) {
+            obj.put("availability", !(boolean) obj.get("availability"));
             updateData();
         }
     }
