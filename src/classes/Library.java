@@ -118,4 +118,33 @@ public class Library {
             updateData();
         }
     }
+
+    public void editMemName(String memID, String fName, String lName) {
+        int toEdit = indexSearch(memArr, memID);
+        JSONObject obj = (JSONObject) memArr.get(toEdit);
+        if (toEdit != -1) {
+            obj.put("fName", fName);
+            obj.put("lName", lName);
+            updateData();
+        }
+    }
+
+    public void editMemAddress(String memID, String address) {
+        int toEdit = indexSearch(memArr, memID);
+        JSONObject obj = (JSONObject) memArr.get(toEdit);
+        if (toEdit != -1) {
+            obj.put("address", address);
+            updateData();
+        }
+    }
+
+    public void editMemConNumber(String memID, String conNumber) {
+        int toEdit = indexSearch(memArr, memID);
+        JSONObject obj = (JSONObject) memArr.get(toEdit);
+        if (toEdit != -1) {
+            obj.put("conNumber", conNumber);
+            updateData();
+        }
+    }
+
 }
