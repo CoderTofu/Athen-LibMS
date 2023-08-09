@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Library {
@@ -56,16 +58,22 @@ public class Library {
     }
 
     private int indexSearch(JSONArray array, String ID) {
+        Map<JSONArray, String> idKeyMap = new HashMap<>();
+        idKeyMap.put(booksArr, "bookID");
+        idKeyMap.put(memArr, "memID");
+
+        String idKey = idKeyMap.get(array);
+
         for (int i = 0; i < array.size(); i++) {
             JSONObject obj = (JSONObject) array.get(i);
-            String currentID = (String) obj.get("bookID");
-
+            String currentID = (String) obj.get(idKey);
             if (currentID.equals(ID)) {
                 return i;
             }
         }
         return -1;
     }
+
     public void addBook(Book book) {
         booksArr.add(book.objectify());
         updateData();
@@ -147,4 +155,42 @@ public class Library {
         }
     }
 
+    public void borrowBook(String bookID, String memID) {
+        // Look for the index of the books and members
+        int bookIndex = indexSearch(booksArr, bookID);
+        int memberIndex = indexSearch(memArr, memID);
+
+        // Look for the book and member using index
+        JSONObject book = (JSONObject) booksArr.get(bookIndex);
+        JSONObject member = (JSONObject) memArr.get(memberIndex);
+
+        // Check if book is available to borrow
+        if (! (Boolean) book.get("availability")) {
+            System.out.println("Book is not available");
+            return;
+        }
+
+        // Information to add when a borrowing happens
+        JSONObject memInfo = new JSONObject(); // To be added to the book
+        JSONObject bookInfo = new JSONObject(); // To be added to an array in the member object
+
+        // Create the additional objects for info
+        memInfo.put("name", member.get("fName") + " " + member.get("lName"));
+        memInfo.put("address", member.get("address"));
+        memInfo.put("conNumber", member.get("conNumber"));
+        memInfo.put("memID", member.get("memID"));
+
+        bookInfo.put("title", book.get("title"));
+        bookInfo.put("author", book.get("author"));
+        bookInfo.put("bookID", book.get("memID"));
+
+        // Update the book and member info
+        JSONArray borrowing = (JSONArray) member.get("curBorrowing");
+        borrowing.add(bookInfo);
+        book.put("borrower", memInfo);
+        editBookAvailability(bookID);
+        updateData();
+    }
+
+    public void returnBook() {}
 }
