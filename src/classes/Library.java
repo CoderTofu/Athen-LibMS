@@ -182,7 +182,7 @@ public class Library {
 
         bookInfo.put("title", book.get("title"));
         bookInfo.put("author", book.get("author"));
-        bookInfo.put("bookID", book.get("memID"));
+        bookInfo.put("bookID", book.get("bookID"));
 
         // Update the book and member info
         JSONArray borrowing = (JSONArray) member.get("curBorrowing");
@@ -192,5 +192,30 @@ public class Library {
         updateData();
     }
 
-    public void returnBook() {}
+    public void returnBook(String bookID, String memID) {
+        // Look for the index of the books and members
+        int bookIndex = indexSearch(booksArr, bookID);
+        int memberIndex = indexSearch(memArr, memID);
+
+        // Look for the book and member using index
+        JSONObject book = (JSONObject) booksArr.get(bookIndex);
+        JSONObject member = (JSONObject) memArr.get(memberIndex);
+
+        JSONArray borrowing = (JSONArray) member.get("curBorrowing");
+        int borrowIndex = -1;
+        for (int i = 0; i < borrowing.size(); i++) {
+            JSONObject obj = (JSONObject) borrowing.get(i);
+            String currentID = (String) obj.get("bookID");
+            if (currentID.equals(bookID)) {
+                borrowIndex = i;
+                break;
+            }
+        }
+
+        // Remove some info on both objects
+        book.put("borrower", "");
+        borrowing.remove(borrowIndex);
+        editBookAvailability(bookID);
+        updateData();
+    }
 }
