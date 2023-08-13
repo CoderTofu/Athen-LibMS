@@ -15,8 +15,8 @@ public class MyFrame extends JFrame{
         JPanel contentPanel = new ContentPanel();
         JPanel commandPanel = new CommandPanel(titlesPanel, contentPanel);
 
-        this.add(commandPanel);
         this.add(titlesPanel);
         this.add(contentPanel);
+        this.add(commandPanel);
     }
 }
