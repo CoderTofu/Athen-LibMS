@@ -11,8 +11,8 @@ public class MyFrame extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(null);
 
-        JPanel titlesPanel = new TitlePanel();
-        JPanel contentPanel = new ContentPanel();
+        TitlePanel titlesPanel = new TitlePanel();
+        ContentPanel contentPanel = new ContentPanel();
         JPanel commandPanel = new CommandPanel(titlesPanel, contentPanel);
 
         this.add(titlesPanel);
