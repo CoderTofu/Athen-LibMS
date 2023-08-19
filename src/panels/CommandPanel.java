@@ -8,16 +8,16 @@ import java.awt.*;
 
 public class CommandPanel extends JPanel {
 
-    public CommandPanel(TitlePanel titlePanel, ContentPanel contentPanel) {
+    public CommandPanel(CustomFonts customFonts, TitlePanel titlePanel, ContentPanel contentPanel) {
         this.setBounds(0, 0, 283, 700);
         this.setBackground(new Color(77, 218, 227));
         this.setLayout(null);
 
-        AppTitle appTitle = new AppTitle();
+        AppTitle appTitle = new AppTitle(customFonts.getHeadingsFont());
         CommandsContainer commandsContainer = new CommandsContainer(titlePanel, contentPanel);
 
         this.add(appTitle);
-        this.add(commandsContainer);
+//        this.add(commandsContainer);
     }
 
     @Override

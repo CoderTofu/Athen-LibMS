@@ -1,9 +1,12 @@
 import classes.*;
+import panels.CustomFonts;
+
 
 public class Main {
     public static void main(String[] args) {
         Library myLib = new Library();
-        new MyFrame();
+        CustomFonts customFonts = new CustomFonts();
+        new MyFrame(customFonts);
     }
 
 //    IMPORTANT STUFF:
