@@ -14,8 +14,8 @@ public class MyFrame extends JFrame{
         this.setLayout(new BorderLayout());
         this.setResizable(false);
 
-        TitlePanel titlesPanel = new TitlePanel();
-        ContentPanel contentPanel = new ContentPanel();
+        TitlePanel titlesPanel = new TitlePanel(customFonts);
+        ContentPanel contentPanel = new ContentPanel(customFonts);
         CommandPanel commandPanel = new CommandPanel(customFonts, titlesPanel, contentPanel);
 
         this.add(titlesPanel);

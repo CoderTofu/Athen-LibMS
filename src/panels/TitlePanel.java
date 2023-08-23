@@ -6,13 +6,18 @@ import java.awt.*;
 public class TitlePanel extends JPanel {
 
     JLabel contentTitle;
-    public TitlePanel() {
+    public TitlePanel(CustomFonts customFonts) {
         this.setBounds(283, 0, 717, 100);
         this.setBackground(new Color(47, 155, 255));
+        this.setLayout(new FlowLayout());
 
-        this.contentTitle = new JLabel();
-        this.contentTitle.setText("Browse Books");
-        this.contentTitle.setBounds(283, 0, 717, 100);
+        contentTitle = new JLabel();
+        contentTitle.setText("Browse Books");
+        contentTitle.setBounds(283, 0, 717, 5000);
+        contentTitle.setFont(customFonts.getHeadingsFont().deriveFont(70f));
+        contentTitle.setHorizontalAlignment(JLabel.CENTER);
+        contentTitle.setVerticalAlignment(JLabel.CENTER);
+        contentTitle.setForeground(Color.white);
 
         this.add(contentTitle);
     }
