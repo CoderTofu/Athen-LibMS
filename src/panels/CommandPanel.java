@@ -17,7 +17,7 @@ public class CommandPanel extends JPanel {
         CommandsContainer commandsContainer = new CommandsContainer(titlePanel, contentPanel);
 
         this.add(appTitle);
-//        this.add(commandsContainer);
+        this.add(commandsContainer);
     }
 
     @Override
