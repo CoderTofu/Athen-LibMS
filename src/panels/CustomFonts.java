@@ -1,6 +1,7 @@
 package panels;
 
-import java.awt.*;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 
 public class CustomFonts {

@@ -3,8 +3,9 @@ package panels;
 import panels.command_sub_panels.AppTitle;
 import panels.command_sub_panels.CommandsContainer;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class CommandPanel extends JPanel {
 

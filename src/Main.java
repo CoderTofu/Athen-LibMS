@@ -1,4 +1,4 @@
-import classes.*;
+import classes.Library;
 import panels.CustomFonts;
 
 

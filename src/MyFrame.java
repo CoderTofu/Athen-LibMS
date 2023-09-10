@@ -3,10 +3,11 @@ import panels.ContentPanel;
 import panels.CustomFonts;
 import panels.TitlePanel;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
 
-public class MyFrame extends JFrame{
+
+public class MyFrame extends JFrame {
     MyFrame(CustomFonts customFonts) {
         this.setVisible(true);
         this.setSize(1000, 700);

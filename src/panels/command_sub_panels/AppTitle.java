@@ -1,8 +1,11 @@
 package panels.command_sub_panels;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.border.Border;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import java.awt.Color;
+import java.awt.Font;
 
 public class AppTitle extends JPanel {
     public AppTitle(Font bodyFont) {

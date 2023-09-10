@@ -1,7 +1,9 @@
 package panels;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.FlowLayout;
 
 public class TitlePanel extends JPanel {
 

@@ -1,7 +1,7 @@
 package panels;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Color;
 
 public class ContentPanel extends JPanel {
     public ContentPanel(CustomFonts customFonts) {
