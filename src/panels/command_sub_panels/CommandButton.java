@@ -5,36 +5,48 @@ import panels.TitlePanel;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.*;
+
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CommandButton extends JPanel {
+public class CommandButton {
     String text = "";
     TitlePanel titlePanel = null;
     ContentPanel contentPanel = null;
 
-    JLabel buttonText = new JLabel();
+    List<JPanel> buttons = new ArrayList<>();
 
     CommandButton(String text, TitlePanel titlePanel, ContentPanel contentPanel) {
-        this.setBackground(new Color(77, 218, 227));
         this.text = text;
         this.titlePanel = titlePanel;
         this.contentPanel = contentPanel;
-        createButton();
+
+        createButton("Test");
+
+        addButtonsToContainer();
     }
 
-    private void createButton() {
-        this.buttonText.setText(this.text);
-        this.buttonText.addMouseListener(new MouseAdapter() {
+    private void createButton(String text) {
+        JPanel buttonPanel = new JPanel();
+        JLabel button = new JLabel();
+        button.setText(this.text);
+        button.addMouseListener(new MouseAdapter() {
             public  void mouseClicked(MouseEvent e) {
-                buttonFunc(titlePanel, text);
+                buttonFunc(titlePanel, button.getText());
             }
         });
-        this.add(buttonText);
+        buttonPanel.add(button);
+        buttons.add(buttonPanel);
     }
 
     private void buttonFunc(TitlePanel titlePanel, String text) {
         titlePanel.changeText(text);
+    }
+
+    private void addButtonsToContainer() {
+
     }
 }
